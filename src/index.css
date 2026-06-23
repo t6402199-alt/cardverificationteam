@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@layer utilities {
+  /* floating background bubbles */
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0.4;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  /* Shimmer button animation */
+  @keyframes shimmer {
+    100% {
+      left: 125%;
+    }
+  }
+
+  .animate-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animate-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent
+    );
+    transform: skewX(-20deg);
+    animation: shimmer 2.5s infinite;
+  }
+}
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: #e0f2fe;
+  color: #0f172a;
+  font-family: var(--font-sans);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* ===== Google Translate Widget Custom Styling ===== */
+#google_translate_element {
+  position: absolute !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Style the auto-generated Google Translate dropdown */
+.google-translate-inline select,
+#google_translate_element select {
+  background-color: #0b0f19 !important;
+  color: #94a3b8 !important;
+  border: 1px solid rgba(129, 140, 248, 0.2) !important;
+  border-radius: 9999px !important;
+  padding: 4px 10px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  font-family: var(--font-sans), sans-serif !important;
+  outline: none !important;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+}
+
+.google-translate-inline select:hover,
+#google_translate_element select:hover {
+  background-color: #111827 !important;
+  border-color: rgba(129, 140, 248, 0.6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.15) !important;
+}
+
+/* Hide standard Google Translate frames, bars, and powered-by text */
+.goog-logo-link, 
+.goog-te-gadget span,
+.goog-te-gadget div,
+.goog-te-gadget-simple img,
+.goog-te-banner-frame,
+.goog-te-banner,
+#goog-gt-tt, 
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.goog-te-gadget {
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: normal !important;
+}
+
+.goog-te-gadget select {
+  margin: 0 !important;
+}
+
+/* Ensure no blank spaces on body pushed by widgets, overriding translation displacement */
+body, html {
+  top: 0px !important;
+  position: static !important;
+  margin-top: 0px !important;
+}
+
+html {
+  margin-top: 0px !important;
+}
+
+/* Hard-vanish of the top element banner and any direct skiptranslate frame wrappers */
+iframe.goog-te-banner-frame,
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+body > .skiptranslate,
+#goog-gt-tt.skiptranslate,
+#google-translate-container {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0px !important;
+  width: 0px !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
